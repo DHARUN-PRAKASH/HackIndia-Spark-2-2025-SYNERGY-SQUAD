@@ -31,8 +31,8 @@ router.post('/login', async (req, res) => {
       {
         userId: user._id,  // Include the user ID or any data you want to encode
         username: user.username,
-        unique_id: user.unique_id,  // Include the unique_id in the token if needed
-        admin: user.admin  // Directly use 'admin' field from the database (true or false)
+        admin: user.admin,  // Directly use 'admin' field from the database (true or false)
+        unique_id: user.unique_id
       },
       process.env.JWT_SECRET, // Use the secret key from the .env file
       { expiresIn: '10h' }  // Token expiration time (10 hours in this case)
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
     res.status(200).json({
       msg: 'Login successful',
       token,  // The JWT token
-      user: { username: user.username, email: user.email, admin: user.admin }  // Return the 'admin' status directly
+      user: { username: user.username, email: user.email, admin: user.admin ,unique_id:user.unique_id}  // Return the 'admin' status directly
     });
   } catch (error) {
     console.error('Error:', error);

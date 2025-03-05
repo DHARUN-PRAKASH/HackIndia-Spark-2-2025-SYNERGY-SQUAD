@@ -60,6 +60,7 @@ const SignIn = () => {
       sessionStorage.setItem("jwtToken", token);  // Store JWT token
       sessionStorage.setItem("logged", JSON.stringify(user));  // Store user data (username, email, etc.)
       sessionStorage.setItem("admin", user.admin);  // Store admin status (true or false) based on user.admin
+      sessionStorage.setItem("unique_id", user.unique_id);  // Store login status
   
       console.log("Login successful:", loginData);
   
