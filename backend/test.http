@@ -1,0 +1,45 @@
+################
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+  "email": "dharun@gmail.com",
+  "password": "123456"
+}
+
+############################
+# Add New User
+POST http://localhost:5000/users/addUser
+Content-Type: application/json
+
+{
+  "name": "Dharun",
+  "username": "dharun123",
+  "email": "dharun@gmail.com",
+  "password": "123456",
+  "contact": 9876543210,
+  "admin": false
+}
+
+
+### Example of a protected route using the token
+GET http://localhost:5000/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzQwMTllNzBkNTMzOTM1MjcwYTIyODQiLCJ1c2VybmFtZSI6ImRoYXJ1biIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0MTAxMzYwMiwiZXhwIjoxNzQxMDQ5NjAyfQ.dfoIZcn2DT9XgTvDeodPPtNzhWcp-dw9EOBsJ4ni5vU
+
+
+### Get all users (requires JWT)
+GET http://localhost:5000/users/getAllUsers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzQwMTllNzBkNTMzOTM1MjcwYTIyODQiLCJ1c2VybmFtZSI6ImRoYXJ1biIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0MTAxMzYwMiwiZXhwIjoxNzQxMDQ5NjAyfQ.dfoIZcn2DT9XgTvDeodPPtNzhWcp-dw9EOBsJ4ni5vU
+
+
+
+### Add a new user
+POST http://localhost:5000/users/addUser
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "email": "user1@example.com",
+  "password": "user1@123",
+  "contact":1234567890
+}

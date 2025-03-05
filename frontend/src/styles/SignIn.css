@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Full Page Background */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  background-position: center;
+  position: relative; /* Prevents any shifting */
+  overflow: hidden; 
+}
+
+/* Dashboard Styling */
+.dashboard {
+  width: 100%;
+  background-color: #76b8b4; /* Dashboard color */
+  text-align: center;
+  padding: 20px;
+}
+
+.dashboard h1 {
+  width: 100%;
+  background-color: #76b8b4;
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Authentication Card Container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card-container {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Login & Sign-Up Form */
+.form-container {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  max-width: 300px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  background: #f8f8f8;
+}
+
+/* Increased Size of Input Fields in Login Page */
+.login-form .input-field {
+  max-width: 350px;
+  margin-bottom: 8%;
+  height: 45px;
+}
+
+/* Apply border-radius and consistent styling */
+.input-field input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+/* Button Styling */
+.btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background: #76b8b4;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #5a9a91;
+}
+
+/* Text Toggle (Login <-> Sign Up) */
+.toggle-text {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.toggle-link {
+  color: #76b8b4;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+}
+
+/* Image Section */
+.image-container {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sign-Up Mode Animation */
+.sign-up-mode .image-container {
+  transform: translateX(-100%);
+}
+
+.sign-up-mode .login-form {
+  transform: translateX(-100%);
+}
+
+.sign-up-mode .signup-form {
+  transform: translateX(0);
+}
+
+.hidden {
+  display: none;
+}
