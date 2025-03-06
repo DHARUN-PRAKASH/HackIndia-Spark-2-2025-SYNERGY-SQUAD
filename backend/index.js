@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 // Use Routes
 app.use("/users", userController);
-app.use("/certficate", userController);
+app.use("/certficate", certificateController);
 
 
 

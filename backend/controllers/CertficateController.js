@@ -6,7 +6,6 @@ const path = require("path");
 require("dotenv").config(); 
 
 const Certificate = require("../models/Certficate"); // New model for storing certificate info
-const auth = require("../middleware/authMiddleware");
 
 // -------------------- CERTIFICATE STORAGE API --------------------
 
@@ -45,3 +44,5 @@ router.post("/api/store-certificate", upload.single("file"), async (req, res) =>
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+module.exports = router;
