@@ -43,3 +43,21 @@ Content-Type: application/json
   "password": "user1@123",
   "contact":1234567890
 }
+
+### Add Details
+POST http://localhost:5000/details/postdetails
+Content-Type: application/json
+
+{
+  "Name": "Dharun",
+  "College": "MUthayamal University",
+  "Department": "Computer Science",
+  "UniqueId":"6bafb93c-544f-4f24-b5e5-3a215c18c482"
+  
+}
+
+
+
+### Get All Details
+GET http://localhost:5000/details/getdetails
+Content-Type: application/json

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
 const Dash = () => {
@@ -30,23 +31,22 @@ const Dash = () => {
   // Handle Logout
   const handleLogout = () => {
     sessionStorage.clear();  // Clear sessionStorage
-
-    // Ensure navigation is done after clearing sessionStorage
     window.location.assign("/");
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: '#ff7921' }}>
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          My Project
+        <DashboardIcon sx={{ marginRight: 1, color: 'white' }} />
+        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', color: 'white' }}>
+          HACKINDIA
         </Typography>
 
         <Box>
           {/* Account Icon Button */}
           <IconButton
             edge="end"
-            color="inherit"
+            sx={{ color: 'white' }}
             aria-label="account"
             onClick={handleMenu}
             size="large"
@@ -67,13 +67,22 @@ const Dash = () => {
               vertical: 'top',
               horizontal: 'right',
             }}
+            sx={{
+              '& .MuiPaper-root': {
+                backgroundColor: '#ff7921',
+                color: 'white',
+              },
+            }}
           >
             {/* Display Username */}
-            <MenuItem disabled>{username}</MenuItem>
+            <MenuItem disabled sx={{ fontWeight: 'bold' }}>{username}</MenuItem>
 
             {/* Logout Button */}
-            <MenuItem onClick={handleLogout}>
-              <ExitToAppIcon sx={{ marginRight: 1 }} /> Logout
+            <MenuItem 
+              onClick={handleLogout} 
+              sx={{ '&:hover': { backgroundColor: '#e66b1e' } }}
+            >
+              <ExitToAppIcon sx={{ marginRight: 1, color: 'white' }} /> Logout
             </MenuItem>
           </Menu>
         </Box>

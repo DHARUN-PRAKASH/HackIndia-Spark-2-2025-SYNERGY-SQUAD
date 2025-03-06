@@ -57,6 +57,7 @@ export default function AuthForm() {
       sessionStorage.setItem("jwtToken", token);  // Store JWT token
       sessionStorage.setItem("logged", JSON.stringify(user));  // Store user data (username, email, etc.)
       sessionStorage.setItem("admin", user.admin);  // Store admin status (true or false) based on user.admin
+      sessionStorage.setItem("unique_id", user.unique_id);  // Store login status
   
       console.log("Login successful:", loginData);
   
@@ -71,26 +72,39 @@ export default function AuthForm() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     const { fullName, username, email, phone, password, confirmPassword } = signUpDetails;
-
+  
     if (!fullName || !username || !email || !phone || !password || !confirmPassword) {
       alert("All fields are required!");
       return;
     }
-
+  
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-
+  
     try {
       const userData = { name: fullName, username, email, password, contact: phone, admin: false };
       await addUser(userData); // Call the addUser function
       alert("Signup Successful!");
-      setIsSignUpMode(false);
+  
+      // Clear the signup form fields
+      setSignUpDetails({
+        fullName: "",
+        username: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      });
+  
+      // Switch back to the sign-in tab
+      setActiveTab("signin");
     } catch (error) {
-      alert("Error during signup: " + error.response.data.msg);
+      alert("Error during signup: " + (error.response?.data?.msg || error.message));
     }
   };
+  
 
   // Add this function to handle tab changes
   const handleTabChange = (value) => {
@@ -125,15 +139,15 @@ export default function AuthForm() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Welcome Back!
+              Welcome to
             </motion.h2>
             <motion.p
-              className="auth-description"
+              className="auth-title"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Sign in to access your account or create a new one to join our community.
+              HACKINDIA
             </motion.p>
             <motion.div
               className="auth-testimonial-wrapper"
@@ -159,8 +173,10 @@ export default function AuthForm() {
           >
             <div className="auth-card">
               <div className="auth-card-header">
-                <h2 className="auth-card-title">Authentication</h2>
-                <p className="auth-card-description">Sign in to your account or create a new one</p>
+                {/* <h2 className="auth-card-title">Authentication</h2>
+                <p className="auth-card-description">Sign in to your account or create a new one</p> */}
+<img src="title.png" style={{ width: "300px", height: "auto" }} alt="Title" />
+
               </div>
               <div className="auth-card-content">
                 <motion.div
@@ -225,7 +241,7 @@ export default function AuthForm() {
   id="signin-email"
   name="email"
   type="email"
-  placeholder="name@example.com"
+  placeholder="enter mail"
   className="auth-input"
   value={email}
   onChange={(e) => setEmail(e.target.value)}
@@ -248,7 +264,7 @@ export default function AuthForm() {
                                         id="signin-password"
                                         name="password"
                                         type="password"
-                                        placeholder="••••••••"
+                                        placeholder="enter password"
                                         className="auth-input"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -289,7 +305,7 @@ export default function AuthForm() {
                                         <input
                                           id="fullName"
                                           name="fullName"
-                                          placeholder="John Doe"
+                                          placeholder="Enter name"
                                           className="auth-input"
                                           value={signUpDetails.fullName}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, fullName: e.target.value })}
@@ -306,7 +322,7 @@ export default function AuthForm() {
                                         <input
                                           id="username"
                                           name="username"
-                                          placeholder="johndoe"
+                                          placeholder="enter username"
                                           className="auth-input"
                                           value={signUpDetails.username}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, username: e.target.value })}
@@ -326,7 +342,7 @@ export default function AuthForm() {
                                           id="signup-email"
                                           name="email"
                                           type="email"
-                                          placeholder="name@example.com"
+                                          placeholder="enter email" 
                                           className="auth-input"
                                           value={signUpDetails.email}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, email: e.target.value })}
@@ -344,7 +360,7 @@ export default function AuthForm() {
                                           id="phone"
                                           name="phone"
                                           type="tel"
-                                          placeholder="+1 (555) 000-0000"
+                                          placeholder="enter mobile"
                                           className="auth-input"
                                           value={signUpDetails.phone}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, phone: e.target.value })}
@@ -364,7 +380,7 @@ export default function AuthForm() {
                                           id="signup-password"
                                           name="password"
                                           type="password"
-                                          placeholder="••••••••"
+                                          placeholder="enter password"
                                           className="auth-input"
                                           value={signUpDetails.password}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, password: e.target.value })}
@@ -382,7 +398,7 @@ export default function AuthForm() {
                                           id="confirmPassword"
                                           name="confirmPassword"
                                           type="password"
-                                          placeholder="••••••••"
+                                          placeholder="enter confirm password"
                                           className="auth-input"
                                           value={signUpDetails.confirmPassword}
                                           onChange={(e) => setSignUpDetails({ ...signUpDetails, confirmPassword: e.target.value })}
